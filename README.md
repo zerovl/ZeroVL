@@ -14,6 +14,7 @@ ALIGN	  | 1024 TPUv3  | 1800M | 425.3     | 500.4     | **553.3** | **576.0** |
 baseline| 8 V100      | 14.2M | 363.5     | 471.9     | 476.8     | 553.0     |
 ZeroVL	| 8 V100      | 14.2M | 425.0     | 485.0     | 536.2     | 561.6     |
 ZeroVL	| 8 V100      | 100M  | **442.1** | **500.5** | 546.5     | 573.6     |
+
 zs.: zero-shot setting, ft.: fine-tuned setting.
 
 ## Installation
