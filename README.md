@@ -1,4 +1,4 @@
-<img src="./docs/logo.png" width="150" >
+<img src="./docs/logo.svg" width="150" >
 
 This repository contains source code necessary to reproduce the results presented in the paper [ZeroVL: A Strong Baseline for Aligning Vision-Language Representations with Limited Resources](https://arxiv.org/abs/2112.09331).
 
