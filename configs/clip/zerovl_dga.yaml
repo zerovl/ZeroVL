@@ -1,0 +1,129 @@
+runner:
+  name: clip_bsgs
+  val_interval: 1 
+  val_interval_steps: -1
+  stable_random: step
+
+epoch: 20
+
+dist:
+  name: torch
+  fp16: True #for torch dist 
+
+  param:
+    opt_level: O1 # for apex dist 
+
+log:
+  interval_train: 10
+  interval_val: 1
+
+wandb:
+  enable: False
+  project: your_proj
+  entity: your_entity
+
+ckpt:
+  dir: ./output
+  step_interval: 2000
+  filename: step_checkpoint.pth
+
+# Optimizing configurations
+optim:
+  name: torch.optim.AdamW
+  param: 
+    betas: !!python/tuple [0.9, 0.98]
+    eps: 1.0e-6
+    weight_decay: 0.001
+  lr:
+    name: cosine_schedule_with_warmup_min_lr_scale
+    init: 1.0e-4
+    warmup_proportion: 0.025
+    param:
+      num_cycles: 0.5
+      min_lr_scale: 0.1
+  
+  # param_group_rules:
+  #   no_decay:
+  #     regex: bias|mask_token|cls_token|pos_embed|norm1\.weight|norm\.weight|norm2\.weight|LayerNorm\.weight
+  #     param:
+  #       weight_decay: 0.0
+
+
+# ----- DATASET BUILDER -----
+data:
+  exp_name: your_exp_name
+  name: local
+  train_type: debias # please choose from [sequential, shuffle, debias]
+  train_steps: -1
+
+  train_name: [sbu, cc3m]
+  valid_name: [f30k, coco] 
+
+  data_path: ./data/
+
+  batch_size: 16384
+  batch_size_train: 1024
+  batch_size_val: 1024
+
+  num_workers: 2
+  enable_valid: True
+  single_eval: False
+  cuda_eval: True
+
+# ----- TRAMSFORM BUILDER -----
+transforms:
+  train_transforms:  [random_resize_crop, autoaug]
+  valid_transforms: [resize, center_crop]
+
+  resize:
+    size: 256
+  center_crop:
+    size: 224
+  random_resize_crop:
+    size: 224
+    scale: [0.6, 1.0]
+  input_size: 224 # declare for vit
+
+# ----- MODEL BUILDER -----
+model:
+  name: clip
+  max_length: 25
+
+  image_encoder:
+    name: timm_modelzoo
+    tag: vit_base_patch16_224_in21k
+    embedding_dim: 768
+    pretrained: True
+    trainable: True
+    vit:
+      only_cls_token: True
+
+  text_encoder:
+    name: huggingface_modelzoo
+    tag: bert-base-uncased
+    embedding_dim: 768
+    pretrained: True
+    trainable: True
+    target_token_idx: 0
+
+  projection:
+    name: simple #complex
+    dim: 512
+
+  pool:
+    name: identity
+
+  syncbn: True
+  interpolate_pos_embed: False
+
+# ----- LOSS BUILDER -----
+loss:
+  name: MixUpNCE
+  global_reduce: True
+  nce_loss:
+    gather_backward: True
+  temperature:
+    name: constant
+    value: 0.02
+  mixup:
+    beta: 0.1

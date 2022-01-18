@@ -1,0 +1,12 @@
+addict
+numpy
+pandas
+Pillow
+PyYAML
+requests
+six
+timm
+torch
+torchvision
+transformers
+wandb
