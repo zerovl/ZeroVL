@@ -1,4 +1,4 @@
-<img src="./docs/logo.png" width="150" >
+<img src="./docs/logo.svg" width="150" >
 
 This repository contains source code necessary to reproduce the results presented in the paper [ZeroVL: A Strong Baseline for Aligning Vision-Language Representations with Limited Resources](https://arxiv.org/abs/2112.09331).
 
@@ -17,6 +17,12 @@ ZeroVL	| 8 V100      | 100M  | **442.1** | **500.5** | 546.5     | 573.6     |
 
 zs.: zero-shot setting, ft.: fine-tuned setting.
 
+ImageNet-1K linear probing results:
+method  | data  | backbone  | top-1     |
+------  | :---: | :------:  | :---:     |
+CLIP    | 400M  | ViT-B/16  | 80.2      |
+ZeroVL  | 100M  | ViT-B/16  | **80.6**  |
+
 ## Installation
 Requirements:
 - Python 3.7
@@ -29,11 +35,19 @@ Install requirements:
 pip3 install -r requirements.txt
 ```
 
-## Getting Started
-Check [GETTING_STARTED.md](GETTING_STARTED.md) for codebase usage.
+## Pre-training
+Check [PRETRAINING.md](PRETRAINING.md) for codebase usage.
 
 ## Model Zoo
-We will release pre-trained models soon.
+ZeroVL 14M weights: [Google Drive](https://drive.google.com/file/d/1Pb5o7EJTCXJyn0vIOE1vdGnJ4l_4mfG2/view?usp=sharing), [Baidu Pan](https://pan.baidu.com/s/1D5RKc2UVhK1y4xGRdIvQeA?pwd=himv)
+
+ZeroVL 100M weights: [Google Drive](https://drive.google.com/file/d/1tkAp3ENPsFMeaW8nbk9bu1zFO-YfhjH5/view?usp=sharing), [Baidu Pan](https://pan.baidu.com/s/1FRsYJIRdP54D6L2veaIDYw?pwd=s42h)
+
+## Evaluation
+Check [EVALUATION.md](EVALUATION.md) for codebase usage.
+
+## Linear Probing
+Check [LINEAR.md](LINEAR.md) for codebase usage.
 
 ## Citing ZeroVL
 If you use ZeroVL in your research or wish to refer to the baseline results, please use the following BibTeX entry.

@@ -67,7 +67,10 @@ if __name__ == '__main__':
     for argv in other_args:
         cmd += f' {argv}'
 
-    os.mkdir('./output')
+    try:
+        os.mkdir('./output')
+    except:
+        pass
 
     if args.no_local_log is False:
         if args.exp_name is not None:

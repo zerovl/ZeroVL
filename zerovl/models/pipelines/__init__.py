@@ -1,2 +1,2 @@
 from .builder import PIPELINE
-from . import clip
+from . import clip, linear_prob
