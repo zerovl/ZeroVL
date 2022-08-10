@@ -52,11 +52,11 @@ Check [LINEAR.md](LINEAR.md) for codebase usage.
 ## Citing ZeroVL
 If you use ZeroVL in your research or wish to refer to the baseline results, please use the following BibTeX entry.
 ```BibTeX
-@article{cui2021zerovl,
-  title={ZeroVL: A Strong Baseline for Aligning Vision-Language Representations with Limited Resources},
-  author={Cui, Quan and Zhou, Boyan and Guo, Yu and Yin, Weidong and Wu, Hao and Yoshie, Osamu},
-  journal={arXiv preprint arXiv:2112.09331},
-  year={2021}
+@article{cui2022zerovl,
+  title={Contrastive Vision-Language Pre-training with Limited Resources},
+  author={Cui, Quan and Zhou, Boyan and Guo, Yu and Yin, Weidong and Wu, Hao and Yoshie, Osamu and Chen, Yubo},
+  journal={ECCV},
+  year={2022}
 }
 ```
 
