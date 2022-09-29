@@ -1,3 +1,3 @@
 print('a')
 import torch
-aaaa = 1000
+aaaa = 100
